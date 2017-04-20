@@ -1,0 +1,197 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+  
+  font-family: 'Playfair Display', serif;
+  margin:0px;
+  margin-top: 60px;
+}
+
+h1, h2, h3 {
+  font-family: 'Montserrat', sans-serif;
+  text-align: center;
+}
+
+
+h3 {
+  margin-left:50px;
+  margin-right: 50px;
+  margin-bottom: 16px;
+  margin-top: 10px
+}
+
+li {
+  text-align: center;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+input[type="text"] {
+  padding: .5em;
+}
+
+input { font-family: 'FontAwesome'; }
+
+li {
+  list-style-type: none;
+}
+
+footer {
+  margin-top:25px;
+  left: 0;
+  bottom: 0;
+  height: 100px;
+  width: 100%;
+  color: #527a7a;
+  font-size:14px;
+  font-style: italic;
+  text-align: center;
+  float:left;
+}
+
+.description {
+  color: #527a7a;
+  font-size:16px;
+  font-style: italic;
+  margin:40px;
+}
+
+.title {
+ color: #527a7a; 
+}
+
+#background {
+  position: fixed; 
+  z-index: -1;
+  top: -50%; 
+  left: -50%; 
+  width: 200%; 
+  height: 200%;
+}
+
+#background img {
+  position: absolute; 
+  top: 0; 
+  left: 0; 
+  right: 0; 
+  bottom: 0; 
+  margin: auto; 
+  min-width: 50%;
+  min-height: 50%;
+}
+
+#background2 {
+  position: fixed; 
+  z-index: -1;
+  top: -50%; 
+  left: -50%; 
+  width: 200%; 
+  height: 200%;
+}
+
+#background2 img {
+  position: absolute; 
+  top: 0; 
+  left: 0; 
+  right: 0; 
+  bottom: 0; 
+  margin: auto; 
+  min-width: 50%;
+  min-height: 50%;
+  opacity: 0.1;
+}
+.js-search-results {
+  cursor:pointer;
+}
+
+.js-search-form{
+  text-align: center;
+}
+
+.results {
+
+}
+
+.name{
+  margin:3px;
+}
+
+.film-boxes {
+  float:left;
+  margin-top: 10px;
+  margin-bottom: 25px;
+  margin-left:10px;
+  margin-right:10px;
+  border: #E1E6EF solid 2px;
+  padding:20px;
+  height:270px;
+  width:150px;
+}
+
+.poster img {
+  display:block;
+  height:140px;
+  padding: 5px;
+  
+
+}
+.movie .film {
+  font-size:10px;
+  font-style: bold;
+  margin-top: 1px;
+  margin-bottom: 1px;
+  text-align:left;
+  display:block;
+  margin:none;
+
+}
+
+.role .job {
+  font-size:8px;
+  font-style:italic;
+  margin-top: 1px;
+  margin-bottom: 1px;
+  text-align:left;
+  display:block;
+}
+
+.cast-crew-final-result-title{
+  float:left;
+  width:100%;
+  margin-top: 35px;
+  margin-bottom:25px;
+  font-size:22px;
+  text-align: left;
+  font-style: bold;
+
+}
+
+.person{
+  float:left;
+  display:inline;
+
+}
+
+.cast-crew-final-result {
+  margin-top: 25px;
+  font-size:16px;
+  text-align: left;
+
+}
+.poster {
+  float: left;
+  width: 100%;
+  margin-right: 5%;
+}
+
+.film-details {
+  float: left;
+  text-align: initial;
+  padding-left: 10%;
+}
+
+.final-list {
+  margin:25px;
+}
