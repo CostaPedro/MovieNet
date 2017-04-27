@@ -75,7 +75,7 @@ $(document).ready(function(){
 
   function finalDisplaySetup() {
     $('.selection').click(function() {
-      var selPerson= this.innerText
+      var selPerson= $(this).text();
       console.log(selPerson);
       var selActorId = ($(this).attr("actorid"));
       console.log(selActorId);
@@ -89,10 +89,12 @@ $(document).ready(function(){
       $.getJSON(filmographyURL).done(function displayFilms(data) {
         var resultFilms = '';
         var filmographyHeader = `<h1>${selPerson}</h1>
-                             <h2>Known For:</h2>`
+                             <h2>Known For:</h2>`;
+        var newDivFilmBoxes = `<div class="scrollbox"></div>`
+
 
         $('.js-search-results-headings').html(filmographyHeader);
-        
+        $('.js-search-results').html(newDivFilmBoxes);
 
         //This will be an array of films the actor or crew member has been involved in.
 
@@ -178,48 +180,60 @@ $(document).ready(function(){
                 for (var i=0; i < data.length; ++i){
                   getFields(data[i].cast,"name");
                   getFields(data[i].crew,"name");
-                  }
+                  } 
 
-              console.log(castAndCrewColleagues); 
+                                    
+              var frequency= {};
 
-              function sortByFrequencyAndRemoveDuplicates(array) {
-                var frequency = {}, value;
+              console.log(selPerson);
 
-                // compute frequencies of each value
-                for(var i = 0; i < array.length; i++) { 
-                    value = array[i];
-                    if(value in frequency) {
-                        frequency[value]++;
-                    }
-                    else {
-                        frequency[value] = 1;
-                    }
+                          
+              var withoutSelPerson =castAndCrewColleagues.filter(val=>val!==selPerson);
+
+              console.log(withoutSelPerson);
+
+              withoutSelPerson.forEach(function(word) {
+                frequency[word] = (frequency[word] || 0) + 1;
+              });
+
+
+              withoutSelPerson.sort(function(x, y) {
+                return frequency[y] - frequency[x];
+              });
+
+              var array  = [];
+
+              for (var key in frequency) {
+                if (frequency.hasOwnProperty(key)) {
+                  array.push([key," "+ frequency[key]]);
                 }
-
-                // make array from the frequency object to de-duplicate
-                var uniques = [];
-                for(value in frequency) {
-                    uniques.push(value);
-                }
-
-                // sort the uniques array in descending order by frequency
-                function compareFrequency(a, b) {
-                    return frequency[b] - frequency[a];
-                }
-
-                return uniques.sort(compareFrequency);
               }
 
-              sortedListFreq = sortByFrequencyAndRemoveDuplicates(castAndCrewColleagues);
-              console.log(sortedListFreq  );
+              array.sort(compareSecondColumn);
+
+              function compareSecondColumn(a, b) {
+                return b[1] - a[1];
+                
+              }
+
+              console.log(frequency);
+
+              console.log(array);
+
+              //console.log(withoutSelPerson);
+
+             //--------------------------------------------------------------------------------------------------
 
 
-              $('.cast-crew-final-result-title').append('The person you have selected has worked with the following people:');
+             
+              var newLine = '<br><div class="subtitle">(Sorted by number of credits in movies they have both worked on.)</div></br>';
+
+              $('.cast-crew-final-result-title').append(selPerson +' has worked with the following people:'+newLine);
             
-                sortedListFreq.forEach(function(persons) {
+                array.forEach(function(persons) {
               
                   var resultPeople = '';
-                  resultPeople += `<li class="person">${persons},`+" "+`</li>`;
+                  resultPeople += `<li class="person">${persons},  </li>`;
                 
                   $('.cast-crew-final-result').append(resultPeople);
                 });
@@ -228,7 +242,7 @@ $(document).ready(function(){
 //=====================================================================================
         };
 
-        $('.js-search-results').html(resultFilms);
+        $('.scrollbox').html(resultFilms);
       });        
           
     });      
