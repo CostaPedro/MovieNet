@@ -32,7 +32,9 @@ input[type="text"] {
   padding: .5em;
 }
 
-input { font-family: 'FontAwesome'; }
+input { 
+  font-family: 'FontAwesome'; 
+}
 
 li {
   list-style-type: none;
@@ -52,6 +54,18 @@ footer {
   float:left;
 }
 
+button {
+  background-color: #730E0E;
+  margin:6px;
+  border:none;
+  color:#527a7a;
+  padding:6px;
+  text-align:center;
+  font-size:15px;
+  font-family: 'Montserrat', sans-serif;
+}
+
+
 .description {
   color: #527a7a;
   font-size:16px;
@@ -62,6 +76,7 @@ footer {
 .title {
  color: #527a7a; 
 }
+
 
 #background {
   position: fixed; 

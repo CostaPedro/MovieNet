@@ -115,9 +115,13 @@ $(document).ready(function(){
             console.log(filmId);
                
             resultFilms += `<div class="film-boxes">
-                            <li class="poster"><img src=https://image.tmdb.org/t/p/w500`+poster+ `></li>
+                            <a href="https://www.themoviedb.org/movie/`+filmId+`">
+                            <li class="poster">
+                            <img src=https://image.tmdb.org/t/p/w500`+poster+ `>
+                            </li>
                             <li class="movie">${titleOf}</li>
                             <li class="job">(${job})</li>
+                            </a>
                             </div>`;
             
             filmIds.push({filmId:filmId});
@@ -129,7 +133,7 @@ $(document).ready(function(){
           data.cast.forEach(function(films){
             var titleOf = (films.title);
             var filmId =(films.id);
-            var role=(films.character);
+            var role=(films.character); 
             var poster = (films.poster_path);
 
             console.log(poster);
@@ -138,9 +142,13 @@ $(document).ready(function(){
             console.log(filmId);
                
             resultFilms += `<div class="film-boxes">
-                            <li class="poster"><img src=https://image.tmdb.org/t/p/w500`+poster+ `></li>
+                            <a href="https://www.themoviedb.org/movie/`+filmId+`">
+                            <li class="poster">
+                            <img src=https://image.tmdb.org/t/p/w500 `+poster+ `>
+                            </li>
                             <li class ="movie">${titleOf}</li>
                             <li class="role">(${role})</li>
+                            </a>
                             </div>`;
             
             filmIds.push({filmId:filmId});
