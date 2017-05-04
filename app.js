@@ -257,18 +257,29 @@ $(document).ready(function(){
             console.log(withoutSelPerson);
             var newLine = '<br><div class="subtitle">Click on names for additional info.</div></br>';
 
-            $('.cast-crew-final-result-title').append(`MovieNet has found ### people `+ selPerson +` has worked with in ##### films:`+ newLine);
-            
+                   
+            withoutDupes= [];
+
+            withoutSelPerson.forEach(function(person){
+              if (withoutDupes.indexOf(person) <0) {
+                withoutDupes.push(person);
+              }
+            });
+
+            var numPeople = withoutDupes.length;
+            console.log(numPeople);
+
+            $('.cast-crew-final-result-title').append(`MovieNet has found `+ numPeople + ` people `+ selPerson +` has worked with in ##### films:`+ newLine);
+
             var resultPeople = '';
 
-            withoutSelPerson.forEach(function(persons) {
+            withoutDupes.forEach(function(persons) {
           
               resultPeople += `<li class="person">${persons},  </li>`;
               
               });
 
-            console.log(resultPeople);
-
+            
             var newDivFilmBox2 = `<div class="scrollbox2" id="style"></div>`;
             $('.cast-crew-final-result').html(newDivFilmBox2);
             $('.scrollbox2').html(resultPeople);  
