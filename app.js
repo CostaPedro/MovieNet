@@ -35,10 +35,10 @@ $(document).ready(function(){
     
     var resultNames = '';
     
-    var namesOptionsHeader = `<h2>The following are results for your search:</h2>
-                              <h3>Please narrow your search by choosing one of the following names:</h3>`
+    var namesOptionsHeader = `<h2 class="description">Following are the top results for your search. If the person you are looking for is not listed, please check the spelling or provide a full name.</h2>
+                              <h3 class="selection_title">Please narrow your search by choosing one of the following names:</h3>`
 
-    $('.landing-page').remove();
+    
 
     var resultPageSetup = `<div id="background2">
                            <img src="http://kingofwallpapers.com/film/film-015.jpg">
@@ -54,7 +54,7 @@ $(document).ready(function(){
         var nameOf = (searchNames.name);
         var actorId =(searchNames.id); 
                
-        resultNames += `<li actorId='${actorId}' class="selection"><p class="name">${nameOf}</p></li>`;
+        resultNames += `<li actorId='${actorId}' class="selection"><p class="name">${nameOf}</p></li></div>`;
       });
     }
     
@@ -62,7 +62,7 @@ $(document).ready(function(){
       resultNames += '<p>No results</p>';
     }
 
-    $('.js-search-results').html(resultNames);
+    $('.columns').html(resultNames);
 
 
     //Makes each <li> tag clickable and redirects to the final display to include a filmography
@@ -80,7 +80,8 @@ $(document).ready(function(){
       var selActorId = ($(this).attr("actorid"));
       console.log(selActorId);
       
-                          
+  $('.landing-page').remove();
+
       var filmographyURL ='https://api.themoviedb.org/3/person/'+selActorId+'/movie_credits?api_key=c523ca485fcd8c30e9105dd1f691321f&language=en-US';
   
       //Makes the call to the api to get movie credits based on the actor id.
@@ -90,7 +91,8 @@ $(document).ready(function(){
         var resultFilms = '';
         var filmographyHeader = `<h1>${selPerson}</h1>
                              <h2>Known For:</h2>`;
-        var newDivFilmBoxes = `<div class="scrollbox"></div>`
+        var newDivFilmBoxes = `<div class="scrollbox1" id="style"></div>`
+        
 
 
         $('.js-search-results-headings').html(filmographyHeader);
@@ -117,13 +119,17 @@ $(document).ready(function(){
             resultFilms += `<div class="film-boxes">
                             <a href="https://www.themoviedb.org/movie/`+filmId+`">
                             <li class="poster">
-                            <img src=https://image.tmdb.org/t/p/w500`+poster+ `>
+                            <object data=https://image.tmdb.org/t/p/w500`+poster+`>
+                            <img class="placeholder" src=https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/80px-No_image_available.svg.png>
+                            </object>
                             </li>
                             <li class="movie">${titleOf}</li>
                             <li class="job">(${job})</li>
                             </a>
                             </div>`;
-            
+            //<object data="http://lorempixel.com/200/200/people/1" type="image/png"></object>
+
+//<object data="http://broken.img/url" type="image/png"></object>
             filmIds.push({filmId:filmId});
 
           
@@ -137,16 +143,18 @@ $(document).ready(function(){
             var poster = (films.poster_path);
 
             console.log(poster);
-            console.log(titleOf);
+            console.log(titleOf); 
             console.log (role);
             console.log(filmId);
                
             resultFilms += `<div class="film-boxes">
                             <a href="https://www.themoviedb.org/movie/`+filmId+`">
                             <li class="poster">
-                            <img src=https://image.tmdb.org/t/p/w500 `+poster+ `>
+                            <object data=https://image.tmdb.org/t/p/w500`+poster+`>
+                            <img class="placeholder" src=https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/80px-No_image_available.svg.png>
+                            </object>
                             </li>
-                            <li class ="movie">${titleOf}</li>
+                            <li class="movie">${titleOf}</li>
                             <li class="role">(${role})</li>
                             </a>
                             </div>`;
@@ -174,11 +182,12 @@ $(document).ready(function(){
 
           })).then(function(data){   
                 console.log(data);
+                //array of film id objects with cast and crew
 
 //This function will get specific values from properties in the array of objects
 
                 function getFields(input, field) {
-                  
+                   
                   for (var i=0; i < input.length ; ++i)
                   castAndCrewColleagues.push(input[i][field]);
                   return castAndCrewColleagues;
@@ -196,12 +205,12 @@ $(document).ready(function(){
               console.log(selPerson);
 
                           
-              var withoutSelPerson =castAndCrewColleagues.filter(val=>val!==selPerson);
+              var withoutSelPerson =castAndCrewColleagues.filter(val=>val!==selPerson);  
 
               console.log(withoutSelPerson);
 
-              withoutSelPerson.forEach(function(word) {
-                frequency[word] = (frequency[word] || 0) + 1;
+              /*withoutSelPerson.forEach(function(NumOfCredits) {
+                frequency[NumOfCredits] = (frequency[NumOfCredits] || 0) + 1;
               });
 
 
@@ -222,35 +231,55 @@ $(document).ready(function(){
               function compareSecondColumn(a, b) {
                 return b[1] - a[1];
                 
-              }
+              }*/
 
-              console.log(frequency);
+              //console.log(frequency);
 
-              console.log(array);
+              //console.log(array);
 
               //console.log(withoutSelPerson);
 
              //--------------------------------------------------------------------------------------------------
 
+             function compare(a, b) {
+              var splitA = a.split(" ");
+              var splitB = b.split(" ");
+              var lastA = splitA[splitA.length - 1];
+              var lastB = splitB[splitB.length - 1];
 
-             
-              var newLine = '<br><div class="subtitle">(Sorted by number of credits in movies they have both worked on.)</div></br>';
-
-              $('.cast-crew-final-result-title').append(selPerson +' has worked with the following people:'+newLine);
+              if (lastA < lastB) return -1;
+              if (lastA > lastB) return 1;
+              return 0;
+            }
+ 
+            var alphabetical = withoutSelPerson.sort(compare);
             
-                array.forEach(function(persons) {
+            console.log(withoutSelPerson);
+            var newLine = '<br><div class="subtitle">Click on names for additional info.</div></br>';
+
+            $('.cast-crew-final-result-title').append(`MovieNet has found ### people `+ selPerson +` has worked with in ##### films:`+ newLine);
+            
+            var resultPeople = '';
+
+            withoutSelPerson.forEach(function(persons) {
+          
+              resultPeople += `<li class="person">${persons},  </li>`;
               
-                  var resultPeople = '';
-                  resultPeople += `<li class="person">${persons},  </li>`;
-                
-                  $('.cast-crew-final-result').append(resultPeople);
-                });
-              }); 
+              });
+
+            console.log(resultPeople);
+
+            var newDivFilmBox2 = `<div class="scrollbox2" id="style"></div>`;
+            $('.cast-crew-final-result').html(newDivFilmBox2);
+            $('.scrollbox2').html(resultPeople);  
+          }); 
               
 //=====================================================================================
         };
 
-        $('.scrollbox').html(resultFilms);
+        
+        $('.scrollbox1').html(resultFilms);
+        
       });        
           
     });      

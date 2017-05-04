@@ -3,7 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
-  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="responsive.css" media="screen and (max-width: 900px)">
   <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Domine" rel="stylesheet">
   <script src="https://use.fontawesome.com/58a0820d2f.js"></script>
@@ -31,7 +32,9 @@
 <div class="results">
   <div class="known-for>">
     <div class="js-search-results-headings"></div>
-    <div class="js-search-results"></div>
+    <div class="js-search-results">
+    <div class="columns"></div>
+    </div>
   </div>
 
   <div class="final-list">
@@ -41,7 +44,9 @@
 
 </div>
 
-  <footer>Powered by The Movie Database.</footer>
+  <footer>
+  <img class="logo" src="https://www.themoviedb.org/assets/static_cache/fd6543b66d4fd736a628af57a75bbfda/images/v4/logos/293x302-powered-by-square-blue.png">
+  </footer>
 
   <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
   <script src="app.js"></script>

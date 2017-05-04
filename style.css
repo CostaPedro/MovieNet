@@ -6,7 +6,7 @@ body {
   
   font-family: 'Playfair Display', serif;
   margin:0px;
-  margin-top: 60px;
+  margin-top: 30px;
 }
 
 h1, h2, h3 {
@@ -38,8 +38,11 @@ input {
 
 li {
   list-style-type: none;
+  margin:auto;
+  width:150px;
 
 }
+
 
 footer {
   margin-top:25px;
@@ -47,7 +50,6 @@ footer {
   bottom: 0;
   height: 100px;
   width: 100%;
-  color: #527a7a;
   font-size:14px;
   font-style: italic;
   text-align: center;
@@ -65,10 +67,31 @@ button {
   font-family: 'Montserrat', sans-serif;
 }
 
+.columns{
+
+  columns:  2;
+  -webkit-columns:  2;
+  -moz-columns:  2;
+  color: #527a7a;
+  font-size:14px;
+  width:300px;
+  margin:auto;
+}
+
 
 .description {
   color: #527a7a;
   font-size:16px;
+  font-style: italic;
+  margin-bottom:40px;
+  margin-left: 60px;
+  margin-right: 60px;
+  
+}
+
+.selection_title {
+  color: #527a7a;
+  font-size:14px;
   font-style: italic;
   margin:40px;
 }
@@ -77,6 +100,11 @@ button {
  color: #527a7a; 
 }
 
+.logo {
+
+  height:80px;
+  
+}
 
 #background {
   position: fixed; 
@@ -96,6 +124,7 @@ button {
   margin: auto; 
   min-width: 50%;
   min-height: 50%;
+  opacity: .6;
 }
 
 #background2 {
@@ -120,20 +149,39 @@ button {
 }
 .js-search-results {
   cursor:pointer;
-  height:325px;
-  
+  height:300px;
+   
 }
 
 .js-search-form{
   text-align: center;
 }
 
-.scrollbox {
+.scrollbox1 {
   cursor:pointer;
-  height:325px;
+  height:280px;
   margin-left: 15px;
   margin-right:15px;
   overflow:scroll;
+}
+
+.scrollbox2{
+ cursor:pointer;
+  height:220px;
+  margin-left: 15px;
+  margin-right:15px;
+  overflow:scroll; 
+}
+
+.scrollbox2{
+  columns:  4;
+  -webkit-columns:  4;
+  -moz-columns:  4;
+  color: #527a7a;
+  font-size:14px;
+  width:700px;
+  margin:auto;
+
 }
 
 .name{
@@ -148,19 +196,39 @@ button {
   margin-right:10px;
   border: #E1E6EF solid 2px;
   padding:20px;
-  height:295px;
-  width:150px;
+  height:275px;
+  width:200px;
 
   
 }
 
-.poster img {
+#style::-webkit-scrollbar-track
+{
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+  border-radius: 10px;
+  background-color: #F5F5F5;
+}
+
+#style::-webkit-scrollbar
+{
+  width: 12px;
+  background-color: #F5F5F5;
+}
+
+#style::-webkit-scrollbar-thumb
+{
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+  background-color: #555;
+}
+
+
+.poster object {
   display:block;
-  height:140px;
+  height:130px;
   padding: 5px;
-  
-
 }
+
 .movie .film {
   font-size:10px;
   font-style: bold;
@@ -169,6 +237,10 @@ button {
   text-align:left;
   display:block;
   margin:none;
+
+}
+
+.placeholder {
 
 }
 
@@ -182,31 +254,32 @@ button {
 }
 
 .cast-crew-final-result-title{
-  float:left;
-  width:100%;
-  margin-top: 35px;
-  margin-bottom:25px;
-  margin-left:15px;
+  width:800px;
+  height:65px;
+  margin:auto;
   font-size:22px;
   text-align: left;
   font-style: bold;
+  text-align: center;
 
 }
 
 .subtitle{
-  font-size: 12px;
+  margin-top: 6px;
+  font-size: 18px;
   font-style:italic;
+  text-align: center;
 }
 
 .person{
-  float:left;
-  display:inline;
+  
   margin-left: 10px;
 
 }
 
 .cast-crew-final-result {
-  margin-top: 25px;
+  margin-top: 8px;
+  margin left:25px;
   font-size:16px;
   text-align: left;
 
